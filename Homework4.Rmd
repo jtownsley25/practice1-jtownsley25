@@ -1,0 +1,70 @@
+---
+title: "Homework4"
+author: "Jacob Townsley"
+date: "2/23/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+```
+
+```{r}
+choco <- read.csv("https://ds202-at-isu.github.io/labs/data/choco.csv")
+```
+
+# Question 1.1
+```{r}
+nrow(choco)
+```
+
+1852 chocolate bars were rated.
+
+# Question 1.2
+```{r}
+numObs <- rep(0, 12)
+for (i in 1:12){
+  numObs[i] <- length(choco$Rating[choco$Review.Date == i + 2005])
+}
+choco2 <- cbind(c(2006:2017), numObs)
+choco2[,1] <- as.factor(choco2[,1])
+choco2 <- as.data.frame(choco2)
+ggplot(data = choco2, aes(x = choco2[,1], y = choco2[,2])) + geom_col() + labs(title = 'Number of Chocolate Ratings by Year', x = 'Year', y = 'Ratings')
+```
+
+# Question 2.1
+```{r}
+ggplot(data = choco, aes(x = Rating)) + geom_histogram()
+```
+
+The ratings appear to approximately normally distributed with a center around 3.3. There are a few outliers with ratings of about 1 and 5.
+
+# Question 2.2
+```{r}
+ggplot(data = choco, aes(x = Cocoa.Pct, y = Rating)) + geom_jitter()
+```
+
+Ratings do not appear to depend on the cocoa percentage. There is no obvious trend in this scatter plot that would suggest ratings are influenced by cocoa percentage.
+
+# Question 2.3
+```{r}
+top3 <- dplyr::filter(choco, Company.Location %in% c("U.S.A.", "France", "Canada"))
+ggplot(data = top3, aes(x = Company.Location, y = Rating)) + geom_boxplot()
+```
+
+Ratings appear to be slightly higher in Canada than France and the USA. French ratings seem to have the least variability. However, on average, each country has roughly the same rating.
+
+# My Own Question: Does company location influence cocoa percentage?
+```{r}
+ggplot(data = top3, aes(x = Company.Location, y = Cocoa.Pct)) + geom_boxplot()
+```
+
+On average, Canada, France, and the USA have about the same cocoa percentages in chocolate. The USA seems to have a wider variety of cocoa percentages. Company location does not appear to influence cocoa percentage, overall.
+
+I worked alone on this project. The GitHub repository I posted to is "practice1-jtownsley25". The link for this is https://github.com/jtownsley25/practice1-jtownsley25. Because I worked on this project alone, it was very straightforward and simple to complete and understand. I was able to complete it all in one day.
+
+
+
+
+
