@@ -1,0 +1,94 @@
+---
+title: "Homework 6"
+author: "Jacob Townsley"
+date: "3/9/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Part 1 Cleaning Missing Values
+```{r}
+setwd('/Users/jacobtownsley/Desktop')
+HAPPY <- readRDS("data/HAPPY.rds")
+HAPPY[HAPPY == "IAP"] = NA
+HAPPY[HAPPY == "DK"] = NA
+HAPPY[HAPPY == "NA"] = NA
+```
+
+# Part 1 HAPPY
+```{r}
+HAPPY[HAPPY == '89 OR OLDER'] = '89'
+HAPPY$AGE = as.numeric(HAPPY$AGE)
+```
+
+# Part 1 AGE
+```{r}
+HAPPY$HAPPY = as.factor(HAPPY$HAPPY)
+```
+
+# Part 1 SEX
+```{r}
+HAPPY$SEX = as.factor(HAPPY$SEX)
+```
+
+# Part 1 MARITAL
+```{r}
+HAPPY$MARITAL = as.factor(HAPPY$MARITAL)
+HAPPY$MARITAL = factor(HAPPY$MARITAL, levels = c("MARRIED", "DIVORCED", "SEPARATED", "WIDOWED", "NEVER MARRIED"))
+```
+
+# Part 1 DEGREE
+```{r}
+HAPPY$DEGREE = as.factor(HAPPY$DEGREE)
+HAPPY$DEGREE = factor(HAPPY$DEGREE, levels = c("LT HIGH SCHOOL", "HIGH SCHOOL", "JUNIOR COLLEGE", "BACHELOR", "GRADUATE"))
+```
+
+# Part 1 FINRELA
+```{r}
+HAPPY$FINRELA = as.factor(HAPPY$FINRELA)
+HAPPY$FINRELA = factor(HAPPY$FINRELA, levels = c("FAR BELOW AVERAGE", "BELOW AVERAGE", "AVERAGE", "ABOVE AVERAGE", "FAR ABOVE AVERAGE"))
+```
+
+# Part 1 HEALTH
+```{r}
+HAPPY$HEALTH = as.factor(HAPPY$HEALTH)
+HAPPY$HEALTH = factor(HAPPY$HEALTH, levels = c("POOR", "FAIR", "GOOD", "EXCELLENT"))
+```
+
+# Part 1 PARTYID
+```{r}
+HAPPY$PARTYID = as.factor(HAPPY$PARTYID)
+HAPPY$PARTYID = factor(HAPPY$PARTYID, levels = c("STRONG DEMOCRAT", "NOT STR DEMOCRAT", "IND,NEAR DEM", "INDEPENDENT", "IND,NEAR REP", "NOT STR REPUBLICAN", "STRONG REPUBLICAN", "OTHER PARTY"))
+```
+
+# Part 1 POLVIEWS
+```{r}
+HAPPY$POLVIEWS = as.factor(HAPPY$POLVIEWS)
+HAPPY$POLVIEWS = factor(HAPPY$POLVIEWS, levels = c("EXTREMELY LIBERAL", "LIBERAL", "SLIGHTLY LIBERAL", "MODERATE", "SLIGHTLY CONSERVATIVE", "CONSERVATIVE", "EXTREMELY CONSERVATIVE"))
+```
+
+# Part 1 Saving Final Data Set
+```{r}
+setwd('/Users/jacobtownsley/Desktop')
+saveRDS(HAPPY, 'data/HAPPY.rds')
+```
+
+# Part 2 Individual Exploration (Jacob)
+
+## How does health and sex influence happiness?
+```{r}
+library(ggplot2)
+ggplot(data = HAPPY, aes(x = HEALTH, y = HAPPY, color = SEX)) + geom_count()
+```
+
+This graph shows that better health (good and excellent) is associated with higher levels in happiness (pretty happy and very happy) in many cases. There does not seem to be a major change between females and males for any of the categories. More evidence for this should be sought because there are many missing values for health in this data set.
+
+I worked alone on this project. The GitHub repository I posted to is "practice1-jtownsley25". The link for this is https://github.com/jtownsley25/practice1-jtownsley25.
+
+
+
+
+
