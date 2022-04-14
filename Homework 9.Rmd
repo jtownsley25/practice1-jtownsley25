@@ -112,6 +112,8 @@ if(returns[i,]$Return5 == 'NO'){
   returns[i,]$Time = 5
   returns[i,]$Returns = 'no'
 }}
+deaths
+returns
 ```
 
 ```{r}
