@@ -1,0 +1,128 @@
+---
+title: "Homework 9"
+author: "Jacob Townsley"
+date: "4/12/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+av <- read.csv("https://raw.githubusercontent.com/fivethirtyeight/data/master/avengers/avengers.csv", stringsAsFactors = FALSE)
+```
+
+```{r}
+deaths <- av
+deaths$Time = NA
+deaths$Death = NA
+for (i in 1:nrow(deaths)){
+if(deaths[i,]$Death1 == 'YES'){
+  deaths[i,]$Time = 1
+  deaths[i,]$Death = 'yes'
+} 
+  if(deaths[i,]$Death1 == 'NO'){
+  deaths[i,]$Time = 1
+  deaths[i,]$Death = 'no'
+}
+
+if(deaths[i,]$Death2 == 'YES'){
+  deaths[i,]$Time = 2
+  deaths[i,]$Death = 'yes'
+}
+  if(deaths[i,]$Death2 == 'NO'){
+  deaths[i,]$Time = 2
+  deaths[i,]$Death = 'no'
+}
+
+if(deaths[i,]$Death3 == 'YES'){
+  deaths[i,]$Time = 3
+  deaths[i,]$Death = 'yes'
+}
+  if(deaths[i,]$Death3 == 'NO'){
+  deaths[i,]$Time = 3
+  deaths[i,]$Death = 'no'
+}
+
+if(deaths[i,]$Death4 == 'YES'){
+  deaths[i,]$Time = 4
+  deaths[i,]$Death = 'yes'
+}
+  if(deaths[i,]$Death4 == 'NO'){
+  deaths[i,]$Time = 4
+  deaths[i,]$Death = 'no'
+}
+
+if(deaths[i,]$Death5 == 'YES'){
+  deaths[i,]$Time = 5
+  deaths[i,]$Death = 'yes'
+} 
+if(deaths[i,]$Death5 == 'NO'){
+  deaths[i,]$Time = 5
+  deaths[i,]$Death = 'no'
+}}
+returns = av
+returns$Time = NA
+returns$Return = NA
+for (i in 1:nrow(returns)){
+if(returns[i,]$Return1 == 'YES'){
+  returns[i,]$Time = 1
+  returns[i,]$Return = 'yes'
+} 
+  if(returns[i,]$Return1 == 'NO'){
+  returns[i,]$Time = 1
+  returns[i,]$Return = 'no'
+  }
+  
+  if(returns[i,]$Return1 == ''){
+    returns[i,]$Time = 1
+    returns[i,]$Return = ''
+  }
+
+if(returns[i,]$Return2 == 'YES'){
+  returns[i,]$Time = 2
+  returns[i,]$Return = 'yes'
+}
+  if(returns[i,]$Return2 == 'NO'){
+  returns[i,]$Time = 2
+  returns[i,]$Return = 'no'
+}
+
+if(returns[i,]$Return3 == 'YES'){
+  returns[i,]$Time = 3
+  returns[i,]$Return = 'yes'
+}
+  if(returns[i,]$Return3 == 'NO'){
+  returns[i,]$Time = 3
+  returns[i,]$Return = 'no'
+}
+
+if(returns[i,]$Return4 == 'YES'){
+  returns[i,]$Time = 4
+  returns[i,]$Return = 'yes'
+}
+  if(returns[i,]$Return4 == 'NO'){
+  returns[i,]$Time = 4
+  returns[i,]$Return = 'no'
+}
+
+if(returns[i,]$Return5 == 'YES'){
+  returns[i,]$Time = 5
+  returns[i,]$Return = 'yes'
+} 
+if(returns[i,]$Return5 == 'NO'){
+  returns[i,]$Time = 5
+  returns[i,]$Returns = 'no'
+}}
+```
+
+```{r}
+sum(as.factor(deaths$Death1) == 'YES')
+```
+
+It is true that 69 of the Avengers have died at least once. I worked on this assingment alone, and the GitHub repository link is https://github.com/jtownsley25/practice1-jtownsley25
+
+
+
+
+
+
+
