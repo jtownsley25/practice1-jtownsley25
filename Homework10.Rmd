@@ -1,0 +1,82 @@
+---
+title: "Homework10"
+author: "Jacob Townsley"
+date: "4/18/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+setwd('/Users/jacobtownsley/Desktop')
+data = read.csv('accident.csv')
+persons = read.csv('person.csv')
+library(ggplot2)
+library(dplyr)
+```
+
+# Part One
+```{r}
+ggplot(data = data, aes(x = DAY_WEEK)) + geom_histogram(bins = 7)
+```
+
+Days 1, 6, 7 appear to have more accidents than the other days of the week.
+
+```{r}
+ggplot(data = data, aes(x = HOUR)) + geom_histogram(bins = 100)
+```
+
+Most accidents appear to happen in the evening time, around hours 15 to 22.
+
+```{r}
+nrow(data[data$DRUNK_DR != 0,])
+```
+
+8720 accidents included at least one drunk driver.
+
+# Part Two
+```{r}
+sub = persons[persons$PER_TYP == 1,]
+```
+
+```{r}
+join = merge(data, sub, all = FALSE)
+```
+
+```{r}
+day = join %>%
+  group_by(DAY_WEEK) %>%
+  summarise(n = n())
+day
+
+hour =  join %>%
+  group_by(HOUR) %>%
+  summarise(n = n())
+hour
+
+gender = join %>%
+  group_by(SEX) %>%
+  summarise(n = n())
+gender
+
+ggplot(day, aes(x = DAY_WEEK, y = n)) + geom_bar(stat = 'identity')
+ggplot(hour, aes(x = HOUR, y = n)) + geom_bar(stat = 'identity')
+ggplot(gender, aes(x = SEX, y = n)) + geom_bar(stat = 'identity')
+```
+
+I worked on this assignment alone, and the link to the GitHub repository I used is https://github.com/jtownsley25/practice1-jtownsley25.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
